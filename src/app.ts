@@ -1,7 +1,7 @@
-import express from "express";
-import { server } from "./server/server";
-import dotenv from "dotenv";
-import { connectToMongoDb } from "./database/db";
+import express from 'express';
+import { server } from './server/server';
+import dotenv from 'dotenv';
+import { connectToMongoDb } from './database/db';
 
 dotenv.config();
 
