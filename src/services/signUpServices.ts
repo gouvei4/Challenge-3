@@ -21,10 +21,10 @@ class SignUpServices {
         message: 'user created Successfuly',
         user: newUser
       });
-    } catch (err: any) {
-      response.status(400).json({
-        status: 400,
-        message: err.message.toString(),
+    } catch (error) {
+      response.status(500).json({
+        type: 'Internal Server Error',
+        message: 'Something went wrong',
       });
     }
   }
