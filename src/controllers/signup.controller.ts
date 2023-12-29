@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import signUpServices from '../services/signUpServices';
+import SignUpService from '../services/signup.service';
 
 class SignUpController {
   router = Router();
@@ -9,7 +9,7 @@ class SignUpController {
   }
 
   initRoutes() {
-    this.router.post('', signUpServices.signUp);
+    this.router.post('', SignUpService.signUp);
   }
 }
 
