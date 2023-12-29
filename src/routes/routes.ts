@@ -1,5 +1,6 @@
 import express from 'express';
-import SignUpController from '../controllers/signUpControllers';
+import SignUpController from '../controllers/signup.controller';
+import SigInController from '../controllers/signin.controller';
 
 const routes = express.Router();
 
@@ -8,5 +9,6 @@ routes.get('/', function (request, response) {
   });
 
 routes.use('/users/sign-up', SignUpController.router);
+routes.use('/users/sign-in', SigInController.router);
 
 export default routes;
