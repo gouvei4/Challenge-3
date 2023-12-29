@@ -1,17 +1,31 @@
-import express from 'express';
-import { server } from './server/server';
+import express, { Application } from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectToMongoDb } from './database/db';
+import routes from './routes/routes';
+
+const PORT: number = 3333;
+
+const app: Application = express();
 
 dotenv.config();
 
-const app = server;
-const port = process.env.PORT || 3333;
-
+app.use(cors());
 app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  }),
+);
+app.use(routes);
 
-app.listen(port, () => {
-  console.log(`Sever runing on port: ${port}`);
+app.listen(PORT, async () => {
+  console.log(`Server Fire on http://localhost:${PORT}`);
+
+  try {
+    await mongoose.connect(process.env.MONGO_URI as string);
+    console.log('Connected to Database');
+  } catch (error) {
+    console.log('Erro to connect Database!');
+  }
 });
-connectToMongoDb();
-export default app;
