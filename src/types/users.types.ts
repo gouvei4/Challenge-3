@@ -1,4 +1,4 @@
-interface Users {
+export type Users = {
     firstName: string;
     lastName: string;
     birthDate: string | Date;

@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import Users from '../types/users.types';
 
 const usersSchema = new Schema<Users>({
