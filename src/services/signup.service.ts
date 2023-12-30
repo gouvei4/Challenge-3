@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import Users from '../types/users.types';
-import usersSchema from '../model/users-models';
+import usersSchema from '../model/users-model';
 
 class SignUpService {
   public async signUp(request: Request, response: Response) {
@@ -15,7 +15,7 @@ class SignUpService {
         password: hashedPassword,
         confirmPassword: hashedConfirmPassword
       });
-      response.status(200).json({
+      response.status(201).json({
         status: 201,
         success: true,
         message: 'user created Successfuly',

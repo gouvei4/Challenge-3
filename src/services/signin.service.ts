@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Users from '../types/users.types';
-import usersSchema from '../model/users-models';
+import usersSchema from '../model/users-model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
