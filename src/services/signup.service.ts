@@ -8,12 +8,11 @@ class SignUpService {
     try {
       const payload = request.body as Users;
       const hashedPassword = await bcrypt.hash(payload.password, 10);
-      const hashedConfirmPassword = await bcrypt.hash(payload.confirmPassword, 10);
 
       const newUser = await usersSchema.create({
         ...payload,
         password: hashedPassword,
-        confirmPassword: hashedConfirmPassword
+        confirmPassword: hashedPassword
       });
       response.status(201).json({
         status: 201,
