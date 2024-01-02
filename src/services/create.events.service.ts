@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import  Events from '../types/events.type';
-import { EventSchema } from '../model/events.model';
+import  Event  from '../model/events.model';
 import jwt from 'jsonwebtoken';
 import { TTokenDecoded } from '../types/tokens-decoded.types';
 
@@ -22,18 +22,13 @@ class EventService {
 
       const tokenDecoded = jwt.decode(token) as TTokenDecoded;
 
-      const newEvent = await EventSchema.create({
+      const newEvent = await Event.create({
         description,
         dayOfWeek,
         userId: tokenDecoded?._id,
       });
 
-      response.status(201).json({
-        _id: newEvent?.id,
-        description,
-        dayOfWeek,
-        userId: newEvent?.userId,
-      });
+      response.status(201).json(newEvent);
     } catch (error: any) {
       response.status(500).json({
         success: false,
