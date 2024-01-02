@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import EventService from '../services/events.service';
+import EventService from '../services/create.events.service';
 
 class EventsController  {
     router = Router();
