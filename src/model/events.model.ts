@@ -1,6 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+import Events from '../types/events.type';
 
-const EventModelSchema = new mongoose.Schema(
+ const eventModelSchema = new Schema<Events>(
   {
     userId: {
       type: String,
@@ -21,4 +22,6 @@ const EventModelSchema = new mongoose.Schema(
   },
 );
 
-export const EventSchema = mongoose.model('Events', EventModelSchema);
+ const Event = mongoose.model('Events', eventModelSchema);
+
+ export default Event;
