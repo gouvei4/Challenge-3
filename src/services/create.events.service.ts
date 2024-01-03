@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import  Events from '../types/events.type';
-import  Event  from '../model/events.model';
+import Events from '../types/events.type';
+import Event from '../model/events.model';
 import jwt from 'jsonwebtoken';
 import { TTokenDecoded } from '../types/tokens-decoded.types';
 
