@@ -6,17 +6,20 @@ class GetEvents {
     try {
       const searchDay = request.query.dayOfWeek;
       const authorizationHeader = request.headers.authorization;
-      
+
       if (!authorizationHeader) {
         response.status(401).json({
           success: false,
-          message: 'Access token is missing',
+          message: 'Not Authenticated. Access token is missing',
         });
         return;
       }
 
       if (!searchDay) {
-        return response.status(400).json({ error: 'Day paramer is missing' });
+        return response.status(404).json({
+          error: 'Not Found',
+          message: 'Not found',
+        });
       }
 
       const events = await Event.find({ dayOfWeek: searchDay });

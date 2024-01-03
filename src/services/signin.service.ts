@@ -3,6 +3,7 @@ import Users from '../types/users.types';
 import usersSchema from '../model/users-model';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { ERROR_VALIDATION, SERVER_ERROR, WRONG } from '../../utils/error';
 
 class SignInService {
   public async signin(request: Request, response: Response) {
@@ -12,7 +13,7 @@ class SignInService {
 
       if (!isUserExist) {
         response.status(400).json({
-          type: 'Validation Error',
+          type: ERROR_VALIDATION,
           message: 'User not found',
         });
         return;
@@ -25,7 +26,7 @@ class SignInService {
 
       if (!isPasswordExist) {
         response.status(400).json({
-          type: 'Validation Error',
+          type: ERROR_VALIDATION,
           message: 'Email or password is incorrect',
         });
         return;
@@ -49,8 +50,8 @@ class SignInService {
       });
     } catch (error) {
       response.status(500).json({
-        type: 'Internal Server Error',
-        message: 'Something went wrong',
+        type: SERVER_ERROR,
+        message: WRONG,
       });
     }
   }

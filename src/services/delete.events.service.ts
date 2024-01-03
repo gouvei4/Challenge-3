@@ -1,5 +1,11 @@
 import { Request, Response } from 'express';
 import Event from '../model/events.model';
+import {
+  NOT_AUTHENTICATED,
+  SERVER_ERROR,
+  UNAUTHORIZED,
+  WRONG,
+} from '../../utils/error';
 
 class DeleteEventDay {
   public async delete(request: Request, response: Response) {
@@ -10,7 +16,8 @@ class DeleteEventDay {
       if (!authorizationHeader) {
         response.status(401).json({
           success: false,
-          message: 'Access token is missing',
+          error: UNAUTHORIZED,
+          message: `${NOT_AUTHENTICATED} Access token is missing`,
         });
         return;
       }
@@ -33,7 +40,7 @@ class DeleteEventDay {
       response.status(200).json({ message: 'Events deleted successfully' });
     } catch (err) {
       console.error(err);
-      response.status(500).json({ message: 'Internal server error.' });
+      response.status(500).json({ error: SERVER_ERROR, message: WRONG });
     }
   }
 }

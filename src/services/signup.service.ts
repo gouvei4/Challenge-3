@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import Users from '../types/users.types';
 import usersSchema from '../model/users-model';
+import { SERVER_ERROR, WRONG } from '../../utils/error';
 
 class SignUpService {
   public async signUp(request: Request, response: Response) {
@@ -22,8 +23,8 @@ class SignUpService {
       });
     } catch (error) {
       response.status(500).json({
-        type: 'Internal Server Error',
-        message: 'Something went wrong',
+        type: SERVER_ERROR,
+        message: WRONG,
       });
     }
   }

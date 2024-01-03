@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Event from '../model/events.model';
+import { NOT_AUTHENTICATED, SERVER_ERROR, UNAUTHORIZED, WRONG } from '../../utils/error';
 
 class GetEventId {
   public async getEventId(request: Request, response: Response) {
@@ -10,7 +11,8 @@ class GetEventId {
       if (!authorizationHeader) {
         return response.status(401).json({
           success: false,
-          message: 'Access token is missing',
+          error: UNAUTHORIZED,
+          message: `${NOT_AUTHENTICATED} Access token is missing`,
         });
       }
       const event = await Event.findById(eventId);
@@ -26,7 +28,8 @@ class GetEventId {
     } catch (error: any) {
       return response.status(500).json({
         success: false,
-        message: error.message.toString(),
+        error: SERVER_ERROR,
+        message: WRONG,
       });
     }
   }

@@ -3,6 +3,7 @@ import Events from '../types/events.type';
 import Event from '../model/events.model';
 import jwt from 'jsonwebtoken';
 import { TTokenDecoded } from '../types/tokens-decoded.types';
+import { NOT_AUTHENTICATED, SERVER_ERROR, UNAUTHORIZED, WRONG } from '../../utils/error';
 
 class EventService {
   public async create(request: Request, response: Response) {
@@ -13,7 +14,8 @@ class EventService {
       if (!authorizationHeader) {
         response.status(401).json({
           success: false,
-          message: 'Access token is missing',
+          error: UNAUTHORIZED,
+          message: `${NOT_AUTHENTICATED} Access token is missing`,
         });
         return;
       }
@@ -28,11 +30,12 @@ class EventService {
         userId: tokenDecoded?._id,
       });
 
-      response.status(201).json(newEvent);
+      response.status(200).json(newEvent);
     } catch (error: any) {
       response.status(500).json({
         success: false,
-        message: error.message.toString(),
+        error: SERVER_ERROR,
+        message: WRONG,
       });
     }
   }
