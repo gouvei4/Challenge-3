@@ -5,7 +5,7 @@ import {
   SERVER_ERROR,
   UNAUTHORIZED,
   WRONG,
-} from '../../utils/error';
+} from '../utils/error';
 
 class DeleteEventDay {
   public async delete(request: Request, response: Response) {
