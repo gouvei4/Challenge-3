@@ -13,13 +13,13 @@ routes.get('/', function (request, response) {
   response.json({ API: 'Welcome to JWT Authentication' });
 });
 
-routes.use('/users/sign-up', SignUpController.router);
-routes.use('/users/sign-in', SigInController.router);
-routes.use('/users/events', EventsController.router);
-routes.use('/events', GetEventsController.router);
-routes.use('/events', DeleteEventsController.router);
-routes.use('/events', GetEventIdController.router);
-routes.use('/events', DeleteEventsIdController.router);
+routes.use('/api/v1/users/sign-up', SignUpController.router);
+routes.use('/api/v1/users/sign-in', SigInController.router);
+routes.use('/api/v1/users/events', EventsController.router);
+routes.use('/api/v1/events', GetEventsController.router);
+routes.use('/api/v1/events', DeleteEventsController.router);
+routes.use('/api/v1/events', GetEventIdController.router);
+routes.use('/api/v1/events', DeleteEventsIdController.router);
 
 
 export default routes;
