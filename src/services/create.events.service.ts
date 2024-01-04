@@ -3,13 +3,30 @@ import Events from '../types/events.type';
 import Event from '../model/events.model';
 import jwt from 'jsonwebtoken';
 import { TTokenDecoded } from '../types/tokens-decoded.types';
-import { NOT_AUTHENTICATED, SERVER_ERROR, UNAUTHORIZED, WRONG } from '../../utils/error';
+import { NOT_AUTHENTICATED, SERVER_ERROR, UNAUTHORIZED, WRONG } from '../utils/error';
+import {eventsValidationSchema} from '../utils/Validation';
+import { ValidationError } from 'yup';
 
 class EventService {
   public async create(request: Request, response: Response) {
     try {
       const { description, dayOfWeek } = request.body as Events;
       const authorizationHeader = request.headers.authorization;
+
+      try {
+        await eventsValidationSchema.validate(request.body, {
+          stripUnknown: true,
+        });
+      } catch (error) {
+        if (error instanceof ValidationError) {
+          const details = error.errors;
+          return response
+            .status(404)
+            .json({ error: 'Validation error', details });
+        } else {
+          return response.status(404).json({ error: 'Validation error' });
+        }
+      }
 
       if (!authorizationHeader) {
         response.status(401).json({
