@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Event from '../model/events.model';
-import { NOT_AUTHENTICATED, SERVER_ERROR, UNAUTHORIZED, WRONG } from '../../utils/error';
+import { NOT_AUTHENTICATED, SERVER_ERROR, UNAUTHORIZED, WRONG } from '../utils/error';
 
 class GetEventId {
   public async getEventId(request: Request, response: Response) {
