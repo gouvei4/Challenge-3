@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Event from '../model/events.model';
-import { NOT_AUTHENTICATED, UNAUTHORIZED } from '../../utils/error';
+import { NOT_AUTHENTICATED, UNAUTHORIZED } from '../utils/error';
 
 class DeleteEventId {
   public async deleteEventId(request: Request, response: Response) {
