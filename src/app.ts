@@ -1,12 +1,14 @@
 import express, { Application } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import swagger from '../swagger.json';
+import swaggerUi from 'swagger-ui-express';
 import dotenv from 'dotenv';
 import routes from './routes/routes';
 
 const PORT: number = 3333;
 
-const app: Application = express();
+export const app: Application = express();
 
 dotenv.config();
 
@@ -18,14 +20,17 @@ app.use(
   }),
 );
 app.use(routes);
+app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swagger));
 
-app.listen(PORT, async () => {
-  console.log(`Server Fire on http://localhost:${PORT}`);
-
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port: ${PORT}`);
+  });
   try {
-    await mongoose.connect(process.env.MONGO_URI as string);
+     mongoose.connect(process.env.MONGO_URI as string);
     console.log('Connected to Database');
   } catch (error) {
     console.log('Erro to connect Database!');
   }
-});
+}
+
