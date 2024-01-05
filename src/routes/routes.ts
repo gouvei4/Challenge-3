@@ -15,11 +15,11 @@ routes.get('/', function (request, response) {
 
 routes.use('/api/v1/users/sign-up', SignUpController.router);
 routes.use('/api/v1/users/sign-in', SigInController.router);
-routes.use('/api/v1/users/events', EventsController.router);
+routes.use('/api/v1/events', EventsController.router);
 routes.use('/api/v1/events', GetEventsController.router);
 routes.use('/api/v1/events', DeleteEventsController.router);
-routes.use('/api/v1/events', GetEventIdController.router);
-routes.use('/api/v1/events', DeleteEventsIdController.router);
+routes.use('/api/v1/events/', GetEventIdController.router);
+routes.use('/api/v1/events/', DeleteEventsIdController.router);
 
 
 export default routes;
