@@ -10,7 +10,6 @@ import { ValidationError } from 'yup';
 class SignUpService {
   public async signUp(request: Request, response: Response) {
     try {
-      console.log('Before processing birthDate:', request.body.birthDate);
       if (typeof request.body.birthDate === 'string') {
         const parsedDate = parse(
           request.body.birthDate,
@@ -23,7 +22,6 @@ class SignUpService {
         }
 
         request.body.birthDate = format(parsedDate, 'dd/MM/yyyy');
-        console.log('After processing birthDate:', request.body.birthDate);
       }
 
       try {

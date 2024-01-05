@@ -26,7 +26,6 @@ class DeleteEventId {
         response.status(404).json({ message: 'Event not found.' });
       }
     } catch (error) {
-      console.error(error);
       response.status(500).json({ message: 'Internal server error.' });
     }
   }
