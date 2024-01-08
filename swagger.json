@@ -149,7 +149,7 @@
                 {
                   "name": "dayOfWeek",
                   "in": "query",
-                  "description": "Day of the week (e.g., 'sunday', 'monday', etc.)",
+                  "description": "Day of the week English (e.g., 'Sunday', 'Monday', etc.)",
                   "schema": {
                     "type": "string"
                   }
@@ -201,7 +201,7 @@
                         },
                         "dayOfWeek": {
                           "type": "string",
-                          "enum": ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+                          "enum": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
                         }
                       }
                     }
@@ -231,7 +231,7 @@
                 {
                   "name": "dayOfWeek",
                   "in": "query",
-                  "description": "Day of the week in lowercase English (e.g., 'sunday', 'monday', etc.)",
+                  "description": "Day of the week  English (e.g., 'Sunday', 'Monday', etc.)",
                   "required": true,
                   "schema": {
                     "type": "string"
